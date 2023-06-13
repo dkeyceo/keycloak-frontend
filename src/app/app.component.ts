@@ -37,12 +37,15 @@ export class AppComponent {
         if(this.oauthService.getIdentityClaims()){
           this.isLogged = this.getIsLogged();
           this.isAdmin = this.getIsAdmin();
-          this.username = this.oauthService.getIdentityClaims()['preferred_username'];
-          this.messageService.sendMessage(this.oauthService.getIdentityClaims()['preferred_username']);
+          this.username = this.getUsername();
+          this.messageService.sendMessage(this.username);
         }
       });
   }
-  
+
+  public getUsername(){
+    return this.oauthService.getIdentityClaims()['preferred_username'];
+  }
   public getIsLogged(): boolean{
     return (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken());
   }
