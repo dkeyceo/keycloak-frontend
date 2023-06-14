@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Foo } from 'src/app/models/foo';
 import { FooService } from 'src/app/services/foo.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-list',
@@ -10,10 +11,15 @@ import { FooService } from 'src/app/services/foo.service';
 export class ListComponent implements OnInit {
 
   foos: Foo[] = [];
-  constructor(private fooService: FooService) { }
+  isAdmin: boolean = false;
+
+  constructor(private fooService: FooService,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loadFoos()
+    this.isAdmin = this.loginService.getIsAdmin();
+    
   }
 
   loadFoos(){

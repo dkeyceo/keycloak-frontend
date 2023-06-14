@@ -14,4 +14,19 @@ export class LoginService {
   public logout(){
     this.oauthService.logOut();
   }
+
+  public getUsername(){
+    return this.oauthService.getIdentityClaims()['preferred_username'];
+  }
+  public getIsLogged(): boolean{
+    return (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken());
+  }
+
+  public getIsAdmin(): boolean {
+    const token = this.oauthService.getAccessToken();
+    const payload = token.split('.')[1];
+    const payloadDecodedJson = atob(payload);
+    const payloadDecoded = JSON.parse(payloadDecodedJson);
+    return payloadDecoded.realm_access.roles.indexOf('realm-admin') !== -1;
+  }
 }

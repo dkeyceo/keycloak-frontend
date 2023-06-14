@@ -17,7 +17,7 @@ export class FooService {
   }
 
   public detail(id: number): Observable<Foo> {
-    return this.httpClient.get<Foo>(this.fooURL+`list/${id}`, this.httpOptions);
+    return this.httpClient.get<Foo>(this.fooURL+`detail/${id}`, this.httpOptions);
   }
 
   public create(foo: Foo): Observable<any> {
