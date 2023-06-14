@@ -29,4 +29,13 @@ export class ListComponent implements OnInit {
     err => console.log(err.message))
   }
 
+  onDelete(id: any){
+    this.fooService.delete(id).subscribe(
+      data => {
+        console.log(data);
+        this.loadFoos()
+      },
+      err => console.log(err)
+    );
+  }
 }

@@ -1,1 +1,19 @@
-<p>update works!</p>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <form (ngSubmit)="onUpdate()" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="fooName">Name:</label>
+                    <input type="text"class="form-control" name="fooName" id="fooName" [(ngModel)]="foo.name" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!f.valid">
+                    <i class="fas fa-edit"></i>Update
+                </button>
+                <button type="button" class="btn btn-primary btn-block" (click)="backToList()">
+                    <i class="far fa-arrow-alt-circle-left"></i>BackToList
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
