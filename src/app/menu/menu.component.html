@@ -30,6 +30,8 @@
                     Hello, {{username}}
                 </a>
             </li>
+            <button *ngIf="!isLogged" class="mr-3 btn btn-outline-warning" routerLink="/signup">
+              <i class="fas fa-user-plus"></i>Create new User</button>
             <button *ngIf="!isLogged" class="btn btn-success" (click)="login()">
                 <i class="fas fa-sign-in-alt"></i>Login</button>
             <button *ngIf="isLogged"  class="btn btn-danger" (click)="logout()">
