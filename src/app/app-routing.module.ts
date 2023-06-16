@@ -6,14 +6,16 @@ import { ListComponent } from './foo/list/list.component';
 import { UpdateComponent } from './foo/update/update.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { FooGuard } from './guards/foo.guard';
+import { SignupGuard } from './guards/signup.guard';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  {path:'list', component: ListComponent},
-  {path:'detail/:id', component: DetailComponent},
-  {path:'update/:id', component: UpdateComponent},
-  {path:'create', component: CreateComponent},
-  {path:'signup', component: SignupComponent},
+  {path:'list', component: ListComponent, canActivate:[FooGuard], data: {requiredRoles: ['admin','user']}},
+  {path:'detail/:id', component: DetailComponent, canActivate:[FooGuard], data: {requiredRoles: ['admin','user']} },
+  {path:'update/:id', component: UpdateComponent, canActivate:[FooGuard], data: {requiredRoles: ['admin']} },
+  {path:'create', component: CreateComponent, canActivate:[FooGuard], data: {requiredRoles: ['admin']} },
+  {path:'signup', component: SignupComponent, canActivate: [SignupGuard] },
   {path: '**', redirectTo: '', pathMatch:'full'}
 ];
 

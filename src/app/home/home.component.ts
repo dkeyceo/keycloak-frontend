@@ -10,6 +10,7 @@ import { MessageService } from '../services/message.service';
 export class HomeComponent implements OnInit {
 
   username: string = ''
+  isLogging = true;
   constructor(
     private messageService: MessageService
     //private oauthService: OAuthService
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
     // this.username = this.oauthService.getIdentityClaims()['preferred_username']
     this.messageService.getMessage().subscribe(res => {
       this.username = res.text;
+      this.isLogging = false;
     },
      err => console.log(err)
     )
